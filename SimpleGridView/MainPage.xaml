@@ -8,7 +8,45 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="Prefecture selection" Style="{StaticResource SubtitleTextBlockStyle}" Margin="10,0,0,0"/>
+                <GridView
+                    x:Name="PrefectureList"
+                    ItemsSource="{x:Bind Prefectures, Mode=OneWay}"
+                    Margin="10,10,10,0">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Prefecture">
+                            <Border Background="Red" HorizontalAlignment="Stretch">
+                                <Grid Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="ID" Margin="0,0,0,0"/>
+                                    <TextBlock Text="{x:Bind ID}" Margin="10,0,0,0" Grid.Column="1"/>
+                                    <TextBlock Text="Name" Margin="0,0,0,0" Grid.Row="1"/>
+                                    <TextBlock Text="{x:Bind Name}" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1"/>
+                                    <TextBlock Text="Start date" Margin="0,0,0,0" Grid.Row="2"/>
+                                    <TextBlock Text="{x:Bind StartDate}" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>
